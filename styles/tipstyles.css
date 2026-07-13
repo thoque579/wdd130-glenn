@@ -39,30 +39,33 @@ a:hover {
 
 /* --- HEADER & NAVIGATION --- */
 header {
-    padding: 15px 0;
+    padding: 20px 0; /* Slightly increased padding for the larger logo presence */
 }
 
-header .container {
+/* Aligns the logo container on the left side and the nav menu items on the right */
+.header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.logo-box {
-    padding: 5px 15px;
-    border-radius: 4px;
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.logo-wrapper {
+    display: flex;
+    align-items: center;
 }
 
-.logo-link {
-    font-size: 1.2rem;
+/* Scaled up to 95px to give the branding element a distinct, prominent size */
+.site-logo {
+    height: 95px;
+    width: auto;
+    display: block;
 }
 
 nav ul {
     display: flex;
     list-style: none;
     gap: 25px;
+    align-items: center;
 }
 
 nav a {
@@ -249,17 +252,17 @@ footer a {
 
 /* --- RESPONSIVE STRUCTURAL COLLAPSE --- */
 @media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
     .page-layout {
         flex-direction: column;
     }
 
     .more-tips-grid {
         flex-direction: column;
-    }
-
-    header .container {
-        flex-direction: column;
-        gap: 15px;
     }
     
     .hero h1 {
