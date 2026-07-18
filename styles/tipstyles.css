@@ -1,6 +1,6 @@
 /* ==========================================================================
    LAYOUT & WIREFRAME ARCHITECTURE (tipstyles.css)
-   Excludes Global Typography Configuration & Color Value Hex Codes
+   Dynamically connected to styles.css design tokens
    ========================================================================== */
 
 * {
@@ -10,6 +10,9 @@
 }
 
 body {
+    font-family: var(--paragraph-font); /* Uses 'Lado' stack from styles.css */
+    color: var(--secondary-color); /* Uses Midnight Black color rule */
+    background-color: var(--accent1-color); /* Uses white background token */
     line-height: 1.6;
     display: flex;
     flex-direction: column;
@@ -17,16 +20,19 @@ body {
 }
 
 h1, h2, h3 {
+    font-family: var(--heading-font); /* Uses 'Oswald' text treatment */
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 a {
+    color: var(--accent2-color); /* Earthy Green accent link token */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
+    color: var(--secondary-color);
     text-decoration: underline;
 }
 
@@ -39,10 +45,10 @@ a:hover {
 
 /* --- HEADER & NAVIGATION --- */
 header {
-    padding: 20px 0; /* Slightly increased padding for the larger logo presence */
+    background-color: var(--nav-background-color); /* Sunshine Yellow backdrop token */
+    padding: 20px 0;
 }
 
-/* Aligns the logo container on the left side and the nav menu items on the right */
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -54,38 +60,54 @@ header {
     align-items: center;
 }
 
-/* Scaled up to 95px to give the branding element a distinct, prominent size */
 .site-logo {
     height: 95px;
     width: auto;
     display: block;
 }
 
-nav ul {
+/* Base navigation structural setup overriding global raw nav lists */
+header nav {
+    background-color: transparent; 
+    padding: 0;
+}
+
+header nav ul {
     display: flex;
     list-style: none;
     gap: 25px;
     align-items: center;
 }
 
-nav a {
-    text-transform: uppercase;
+header nav ul li a {
+    font-family: var(--heading-font);
+    font-weight: 600;
     font-size: 1.1rem;
+    text-transform: uppercase;
+    color: var(--nav-link-color); /* Black text links */
 }
 
-nav .active-page {
-    border-bottom: 3px solid;
+header nav ul li a:hover {
+    color: var(--nav-hover-link-color); /* Green text on hover */
+    text-decoration: none;
+}
+
+header nav .active-page {
+    border-bottom: 3px solid var(--secondary-color);
     padding-bottom: 2px;
 }
 
 /* --- HERO BANNER --- */
 .hero {
+    background-color: var(--secondary-color); /* Midnight Black */
+    color: var(--paragraph-color-on-color); /* White plain text */
     text-align: center;
     padding: 50px 20px;
 }
 
 .hero h1 {
     font-size: 2.5rem;
+    color: var(--headline-color-on-white); /* Sunshine Yellow highlights */
     margin-bottom: 10px;
 }
 
@@ -98,6 +120,11 @@ nav .active-page {
 .breadcrumbs {
     padding: 15px 0;
     font-size: 0.9rem;
+    color: #777;
+}
+
+.breadcrumbs a {
+    color: #777;
 }
 
 /* --- MAIN TWO-COLUMN WIREFRAME LAYOUT --- */
@@ -110,9 +137,10 @@ nav .active-page {
 /* LEFT MAIN CONTENT AREA */
 .main-content {
     flex: 2;
+    background-color: var(--accent1-color);
     padding: 30px;
     border-radius: 6px;
-    border: 1px solid;
+    border: 1px solid #e0e0e0;
 }
 
 .content-section {
@@ -121,7 +149,8 @@ nav .active-page {
 
 .content-section h2 {
     font-size: 2rem;
-    border-bottom: 2px solid;
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--primary-color);
     padding-bottom: 5px;
     margin-bottom: 15px;
 }
@@ -137,7 +166,7 @@ nav .active-page {
     object-fit: cover;
     border-radius: 4px;
     margin: 15px 0;
-    border: 1px solid;
+    border: 1px solid #e0e0e0;
 }
 
 /* RIGHT SIDEBAR */
@@ -149,12 +178,15 @@ nav .active-page {
 }
 
 .widget {
+    background-color: var(--accent1-color);
     border-radius: 6px;
-    border: 1px solid;
+    border: 1px solid #e0e0e0;
     overflow: hidden;
 }
 
 .widget-title {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
     padding: 12px 15px;
     font-size: 1.3rem;
     text-align: center;
@@ -176,11 +208,13 @@ nav .active-page {
 
 .quick-links-list li a::before {
     content: "→ ";
+    color: var(--accent2-color);
 }
 
 /* Pro Tip Callout Box */
 .pro-tip-widget {
-    border: 2px solid;
+    border: 2px solid var(--primary-color);
+    background-color: #FFFDF0; /* Subtle light background tint */
 }
 
 .pro-tip-widget h3 {
@@ -218,10 +252,12 @@ nav .active-page {
 
 .tip-card {
     flex: 1;
-    border: 1px solid;
+    background-color: var(--accent1-color);
+    border: 1px solid #e0e0e0;
     border-radius: 6px;
     padding: 25px 15px;
     text-align: center;
+    font-family: var(--heading-font);
     font-size: 1.2rem;
     display: flex;
     align-items: center;
@@ -229,12 +265,19 @@ nav .active-page {
     min-height: 100px;
 }
 
+.tip-card a {
+    color: #444;
+}
+
 .tip-card:hover {
-    background-color: transparent;
+    border-color: var(--accent2-color);
+    background-color: #fafafa;
 }
 
 /* --- FOOTER LAYOUT --- */
 footer {
+    background-color: var(--secondary-color);
+    color: var(--paragraph-color-on-color);
     text-align: center;
     padding: 25px 20px;
     font-size: 0.9rem;
@@ -242,12 +285,18 @@ footer {
 }
 
 footer a {
+    color: var(--paragraph-color-on-color);
     margin: 0 10px;
+}
+
+footer a:hover {
+    color: var(--primary-color);
 }
 
 .footer-links {
     margin-top: 10px;
     font-size: 0.85rem;
+    opacity: 0.7;
 }
 
 /* --- RESPONSIVE STRUCTURAL COLLAPSE --- */
